@@ -171,28 +171,42 @@ ALTER TABLE weekly_specials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 
 -- Allow public read access
+DROP POLICY IF EXISTS "Public read menu_items" ON menu_items;
 CREATE POLICY "Public read menu_items" ON menu_items FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Public read service_areas" ON service_areas;
 CREATE POLICY "Public read service_areas" ON service_areas FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Public read site_content" ON site_content;
 CREATE POLICY "Public read site_content" ON site_content FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Public read weekly_specials" ON weekly_specials;
 CREATE POLICY "Public read weekly_specials" ON weekly_specials FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Public read reviews" ON reviews;
 CREATE POLICY "Public read reviews" ON reviews FOR SELECT USING (true);
 
 -- Allow public insert orders (customers don't log in, they just submit orders)
+DROP POLICY IF EXISTS "Public insert orders" ON orders;
 CREATE POLICY "Public insert orders" ON orders FOR INSERT WITH CHECK (true);
 -- No public SELECT — customers don't log in, so there's no way to match them.
 -- Admins use the authenticated role policy below.
 
 -- Admin access for authenticated users only
+DROP POLICY IF EXISTS "Admin all menu_items" ON menu_items;
 CREATE POLICY "Admin all menu_items" ON menu_items FOR ALL USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin all orders" ON orders;
 CREATE POLICY "Admin all orders" ON orders FOR ALL USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin all service_areas" ON service_areas;
 CREATE POLICY "Admin all service_areas" ON service_areas FOR ALL USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin all site_content" ON site_content;
 CREATE POLICY "Admin all site_content" ON site_content FOR ALL USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin all weekly_specials" ON weekly_specials;
 CREATE POLICY "Admin all weekly_specials" ON weekly_specials FOR ALL USING (auth.role() = 'authenticated');
+DROP POLICY IF EXISTS "Admin all reviews" ON reviews;
 CREATE POLICY "Admin all reviews" ON reviews FOR ALL USING (auth.role() = 'authenticated');
 
 -- Hero images policies
 ALTER TABLE hero_images ENABLE ROW LEVEL SECURITY;
+DROP POLICY IF EXISTS "Public read hero_images" ON hero_images;
 CREATE POLICY "Public read hero_images" ON hero_images FOR SELECT USING (true);
+DROP POLICY IF EXISTS "Admin all hero_images" ON hero_images;
 CREATE POLICY "Admin all hero_images" ON hero_images FOR ALL USING (auth.role() = 'authenticated');
 
 -- Storage bucket setup
