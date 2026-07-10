@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS orders (
   status TEXT DEFAULT 'pending' CHECK (status IN ('pending','confirmed','preparing','out_for_delivery','delivered','cancelled')),
   notes TEXT,
   seen BOOLEAN DEFAULT false,
-  stripe_payment_intent TEXT,
   created_at TIMESTAMPTZ DEFAULT now()
 );
 
@@ -89,7 +88,7 @@ INSERT INTO site_content (section, key, value) VALUES
   ('order_cta', 'body', 'Order direct to save on fees, get faster service, and support a local Ghanaian kitchen right here in the UK.'),
   ('order_cta', 'button_text', 'Order Now'),
   ('contact', 'email', 'hello@chefcsa.co.uk'),
-  ('contact', 'phone', '+44 7700 000000'),
+  ('contact', 'phone', '+44 7917 027416'),
   ('contact', 'base_location', 'Cambridge, UK'),
   ('global', 'site_name', 'Chefcsa'),
   ('global', 'site_description', 'Authentic Ghanaian flavours, made fresh daily. Delivered across the UK from Cambridge.'),

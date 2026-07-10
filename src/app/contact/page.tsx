@@ -34,10 +34,10 @@ export default function ContactPage() {
                 <span className="font-semibold text-charcoal">Phone / WhatsApp:</span>
                 <br />
                 <a
-                  href="tel:+447700000000"
+                  href="tel:+447917027416"
                   className="text-terracotta hover:text-terracotta-hover transition-colors"
                 >
-                  +44 7700 000000
+                  +44 7917 027416
                 </a>
               </p>
               <p>

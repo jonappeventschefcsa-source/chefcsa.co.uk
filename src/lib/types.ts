@@ -21,7 +21,6 @@ export interface Order {
   items: OrderItem[];
   total: number;
   status: "pending" | "confirmed" | "preparing" | "out_for_delivery" | "delivered" | "cancelled";
-  stripe_payment_intent: string;
   created_at: string;
 }
 
