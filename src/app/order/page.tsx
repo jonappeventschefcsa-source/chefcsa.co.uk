@@ -67,22 +67,23 @@ export default function OrderPage() {
   const buildWhatsAppMessage = () => {
     const itemsList = cart
       .map((item) => `- ${item.quantity}x ${item.name} (£${(item.price * item.quantity).toFixed(2)})`)
-      .join("%0A");
+      .join("\n");
 
-    return encodeURIComponent(
-      `*New Order from Chef CSA*%0A%0A` +
-      `*Customer Details*%0A` +
-      `Name: ${form.name}%0A` +
-      `Email: ${form.email}%0A` +
-      `Phone: ${form.phone}%0A` +
-      `Address: ${form.address}%0A` +
-      `Delivery: ${form.date} at ${form.time}%0A%0A` +
-      `*Order Items*%0A${itemsList}%0A%0A` +
-      `${form.notes ? `*Notes:* ${form.notes}%0A%0A` : ""}` +
-      `*Subtotal:* £${total.toFixed(2)}%0A` +
-      `*Delivery Fee:* ${deliveryFee === 0 ? "FREE" : "£" + deliveryFee.toFixed(2)}%0A` +
-      `*Total:* £${(total + deliveryFee).toFixed(2)}`
-    );
+    const text =
+      `*New Order from Chef CSA*\n\n` +
+      `*Customer Details*\n` +
+      `Name: ${form.name}\n` +
+      `Email: ${form.email}\n` +
+      `Phone: ${form.phone}\n` +
+      `Address: ${form.address}\n` +
+      `Delivery: ${form.date} at ${form.time}\n\n` +
+      `*Order Items*\n${itemsList}\n\n` +
+      `${form.notes ? `*Notes:* ${form.notes}\n\n` : ""}` +
+      `*Subtotal:* £${total.toFixed(2)}\n` +
+      `*Delivery Fee:* ${deliveryFee === 0 ? "FREE" : "£" + deliveryFee.toFixed(2)}\n` +
+      `*Total:* £${(total + deliveryFee).toFixed(2)}`;
+
+    return encodeURIComponent(text);
   };
 
   const handleWhatsAppOrder = () => {
